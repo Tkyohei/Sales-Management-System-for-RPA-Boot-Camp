@@ -42,18 +42,119 @@
             </div>
         </div>
         <section id="main-content" class="section container-card">
-            <div v-if="isInput" class="box has-background-white">
-                <span>入力画面</span>
+            <div v-if="app_data.status.isInput">
+                <p class="title is-4 has-text-grey-light">{{ text.order_info_title }}</p>
+                <div class="box has-background-white container-card-info">
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_corporate_code }}</label>
+                        <div class="control">
+                            <input class="input input-width-m" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_tanto_department }}</label>
+                        <div class="control ">
+                            <input class="input input-width-l" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_tanto_name }}</label>
+                        <div class="control">
+                            <input class="input input-width-l" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_tanto_tel }}</label>
+                        <div class="control">
+                            <input class="input input-width-s" type="tel">
+                            <span class="hyphen"> - </span>
+                            <input class="input input-width-s" type="tel">
+                            <span class="hyphen"> - </span>
+                            <input class="input input-width-s" type="tel">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_tanto_mail }}</label>
+                        <div class="control">
+                            <input class="input" type="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label has-text-grey">{{ text.label_post }}</label>
+                            <input class="input input-width-s" type="number">
+                            <span class="hyphen"> - </span>
+                            <input class="input input-width-s" type="number">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_address }}</label>
+                        <div class="control">
+                            <input class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-grey">{{ text.label_order_date }}</label>
+                        <div class="control">
+                            <input class="input input-width-m has-text-grey" type="date">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p class="title is-4 has-text-grey-light">{{ text.order_item_title }}</p>
+                <div class="box has-background-white container-card-detail">
+                    <table class="table is-striped is-hoverable">
+                        <thead>
+                            <tr>
+                                <th class="has-text-grey">No</th>
+                                <th class="has-text-grey input-width-item">商品名</th>
+                                <th class="has-text-grey">単価</th>
+                                <th class="has-text-grey">数量</th>
+                                <th class="has-text-grey">合計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="has-text-grey">1</th>
+                                <td>
+                                    <div class="select input-width-full">
+                                        <select class="input-width-full">
+                                            <option value='' seslected>商品を選択してください</option>
+                                            <option>キック力増強シューズ</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control input-width-s">
+                                        <input class="input" type="text" disabled>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control input-width-ss">
+                                        <input class="input" type="text">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control">
+                                        <input class="input" type="text">
+                                    </div>
+                                </td>
+    
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div  v-if="isConfirm" class="box has-background-white">
+            <div  v-if="app_data.status.isConfirm" class="box has-background-white">
                 <span>確認画面</span>
             </div>
-            <div v-if="isSuccess" class="box has-background-white">
-                <span>受注入力を完了しました。</span>
+            <div v-if="app_data.status.isSuccess" class="box has-background-white">
+                <span class="h">受注入力を完了しました。</span>
             </div>
         </section>
-        <div id="go-next" class="container" v-on:click="go_next">
-            <a class="button is-primary">{{text}}</a>
+        <div id="go-next" class="container" >
+            <a class="button is-primary"　v-on:click="go_next">{{text}}</a>
         </div>
         <script src="../js/component.js"></script>
         <script src="../js/order_entry.js"></script>
