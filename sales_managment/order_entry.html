@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" charset="utf-8">
+        <script src="../js/redirect.js"></script> 
+        <script src="../lib/alasql.min.js"></script>           
+        <script src="../js/dao.js"></script>               
+        <script src="../lib/vue.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="../lib/bulma.css">
+        <link rel="stylesheet" href="../css/all_pages.css">
+        <link rel="stylesheet" href="../css/order_entry.css">
+    </head>
+    <body class="has-background-light">
+        <div id="header-nav">
+            <header-nav></header-nav>
+        </div>
+        <div id="status-area" class="columns is-gapless status-area">
+            <div class="status-area-icon">
+                <span class="icon is-large status-area-icon-item"
+                 v-bind:class="InputIconClass">
+                    <i class="fa fa-edit"></i>
+                </span>
+            </div>
+            <div class="column is-3 status-are-bar">
+                <hr v-bind:class="FirstBarClass">
+            </div>
+            <div class="status-area-icon">
+                <span class="icon is-large status-area-icon-item" 
+                v-bind:class="ConfirmIconClass">
+                    <i class="fa fa-file-invoice"></i>
+                </span>
+            </div>
+            <div class="column is-3  status-are-bar">
+                <hr v-bind:class="SecondBarClass">
+            </div>
+            <div class="status-area-icon">
+                <span class="icon is-large status-area-icon-item" 
+                v-bind:class="SuccessIconClass">
+                    <i class="fa fa-check"></i>
+                </span>
+            </div>
+        </div>
+        <section id="main-content" class="section container-card">
+            <div v-if="isInput" class="box has-background-white">
+                <span>入力画面</span>
+            </div>
+            <div  v-if="isConfirm" class="box has-background-white">
+                <span>確認画面</span>
+            </div>
+            <div v-if="isSuccess" class="box has-background-white">
+                <span>受注入力を完了しました。</span>
+            </div>
+        </section>
+        <div id="go-next" class="container" v-on:click="go_next">
+            <a class="button is-primary">{{text}}</a>
+        </div>
+        <script src="../js/component.js"></script>
+        <script src="../js/order_entry.js"></script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" charset="utf-8">
+        <script src="../js/redirect.js"></script>
+        <script src="../lib/alasql.min.js"></script>           
+        <script src="../js/dao.js"></script>
+        <script src="../lib/vue.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="../lib/bulma.css">
+        <link rel="stylesheet" href="../css/all_pages.css">
+        <link rel="stylesheet" href="../css/index.css">
+    </head>
+    <body class="has-background-light">
+        <div id="header-nav">
+            <header-nav></header-nav>
+        </div>
+        <section class="section">
+            <div class="box has-background-white container-menu">
+                <div id="menu-buttons" class="columns is-multiline container-menu-area is-variable is-7">
+                    <menu-button 
+                        v-for="button in buttons"
+                        v-bind:key="button.id"
+                        v-bind:text="button.text"
+                        v-bind:icon="button.icon"
+                        v-bind:link="button.link">
+                    </menu-button>
+                </div>
+            </div>
+        </section>
+        <script src="../js/component.js"></script>
+        <script src="../js/index.js"></script>
+    </body>
+</html>

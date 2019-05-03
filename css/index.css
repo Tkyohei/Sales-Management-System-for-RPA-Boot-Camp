@@ -1,0 +1,14 @@
+.container-menu{
+    margin-right:16%;
+    margin-left:16%;
+}
+
+.container-menu-area{
+    padding:4%;
+    justify-content: center;
+}
+
+.container-menu-area-button{
+    height: 88px;
+    font-size:32px;
+}

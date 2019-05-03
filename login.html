@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" charset="utf-8">
+        <script src="./lib/alasql.min.js"></script>           
+        <script src="./js/dao.js"></script>
+        <script src="./lib/vue.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="./lib/bulma.css">
+        <link rel="stylesheet" href="./css/all_pages.css">
+        <link rel="stylesheet" href="./css/login.css">
+    </head>
+    <body class="has-background-light">
+        <section class="section">
+            <div id="login-form" class="box has-background-white login-card">
+                <div class="login-card-header columns is-vcentered">
+                    <div class="column is-one-third login-card-header-logo">
+                        <figure class="image is-48x48 is-pulled-right">
+                            <img src='./img/logo.png'>
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <span class="is-size-5 has-text-grey">{{system_name}}</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-grey">{{tag_user}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" placeholder="Use Name" v-model:value="v_user">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-grey">{{tag_password}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="password" placeholder="Password" v-model:value="v_password">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                        </span>
+                        <p class="help is-danger" v-if="invalid">{{error_message}}</p>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button class="button is-success is-fullwidth" v-on:click="login">{{btn_login}}</button>
+                    </p>
+                </div>
+            </div>
+            <script src="./js/login.js"></script>
+        </section>
+    </body>
+</html>

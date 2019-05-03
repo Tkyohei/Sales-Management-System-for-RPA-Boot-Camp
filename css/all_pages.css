@@ -1,0 +1,9 @@
+body{
+    font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+
+.header-body{
+    border-bottom : solid;
+    border-bottom-width : 1px;
+    border-bottom-color : lightgray;
+}

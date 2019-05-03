@@ -1,0 +1,56 @@
+.container-card{
+    margin-right:16%;
+    margin-left:16%;
+}
+
+.status-area{
+    display: flex;
+    justify-content: center;
+    margin-top:36px !important;
+}
+
+.status-area-icon{
+    display:flex;
+    align-items: center;
+    text-align: center;
+}
+
+.status-area-icon-item{
+    border-radius: 50%;
+}
+
+.status-are-bar hr{
+    height: 3px;
+}
+
+.barYet{
+    border-top: 3px dotted #7a7a7a47;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
+
+.barNow{
+    background-color:#7a7a7a47;
+}
+
+.barAlready{
+    background-color:hsl(141, 71%, 48%);
+}
+
+
+
+.iconNowAlready{
+    background-color:hsl(141, 71%, 48%);
+    color:white;
+}
+
+.iconYet{
+    background-color:#7a7a7a47;
+    color:grey;
+}
+
+#go-next{
+    display: flex;
+    justify-content: flex-end; 
+}
