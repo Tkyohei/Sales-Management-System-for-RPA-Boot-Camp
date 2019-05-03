@@ -1,8 +1,10 @@
 (async()=>{
     await dao.createDataBaseIfNotExists();
-    await dao.createTablesIfNotExist();
-    await dao.insertProductsMasterDataIfNotExists();
-        
+    await dao.createTablesIfNotExist().then(async create_count =>{
+        if(create_count > 0){
+            await dao.insertProductsMasterDataIfNotExists();
+        }
+    });        
 })()
 .catch(reject =>{
     alert("データベース処理中ににエラーが発生しました。")

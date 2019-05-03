@@ -35,11 +35,12 @@ var dao = {
                 const sql_create_stock =
                 "CREATE TABLE IF NOT EXISTS t_stock(id INT, stock INT);"
 
-                alasql(sql_create_products);
-                alasql(sql_create_order_info);
-                alasql(sql_create_order_detail);        
-                alasql(sql_create_tokuisaki);
-                alasql(sql_create_stock);
+                var create_count = 0;
+                create_count = create_count + alasql(sql_create_products);
+                create_count = create_count + alasql(sql_create_order_info);
+                create_count = create_count + alasql(sql_create_order_detail);        
+                create_count = create_count + alasql(sql_create_tokuisaki);
+                create_count = create_count + alasql(sql_create_stock);
                 resolve();
             }catch(e){
                 reject(e)
