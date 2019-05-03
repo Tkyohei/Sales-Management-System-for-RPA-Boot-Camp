@@ -20,18 +20,26 @@ var dao = {
         return new Promise((resolve,reject)=>{
             try{
                 const sql_create_products =
-                "CREATE TABLE IF NOT EXISTS t_products (id INT, product_name STRING, price STRING)"
+                "CREATE TABLE IF NOT EXISTS t_products (id INT, product_name STRING, price INT);"
         
                 const sql_create_order_info =
                 "CREATE TABLE IF NOT EXISTS t_order_info(order_num INT, order_date DATE, total_amount INT," +
-                " client_name STRING, post STRING, address STRING, tel STRING)"
+                " tanto_name STRING, tanto_department STRING, post STRING, address STRING, tel STRING);"
         
                 const sql_create_order_detail = 
-                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT)"
-        
+                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT);"
+                
+                const sql_create_tokuisaki = 
+                "CREATE TABLE IF NOT EXISTS t_tokuisaki(code STRING, corporate_name STRING, transaction_limit INT);";
+
+                const sql_create_stock =
+                "CREATE TABLE IF NOT EXISTS t_stock(id INT, stock INT);"
+
                 alasql(sql_create_products);
                 alasql(sql_create_order_info);
                 alasql(sql_create_order_detail);        
+                alasql(sql_create_tokuisaki);
+                alasql(sql_create_stock);
                 resolve();
             }catch(e){
                 reject(e)
@@ -41,16 +49,24 @@ var dao = {
     insertProductsMasterDataIfNotExists : ()=>{
         return new Promise((resolve,reject)=>{
             try{
-                const master_data = [
-                    [{id:1,product_name:"PC",price:100000}],
-                    [{id:2,product_name:"Printer",price:30000}]
-                ]
-                const sql_insert = "INSERT INTO t_products VALUES ?";
-                for (var i = 0; i < master_data.length;i++){
-                    alasql(sql_insert,master_data[i]);
+                const sql_insert_products = "INSERT INTO t_products VALUES ?;";
+                const sql_insert_tokuisaki = "INSERT INTO t_tokuisaki VALUES ?;";
+                const sql_insert_stock = "INSERT INTO t_stock VALUES ?;";
+                
+                for (var i = 0; i < initial_data.products_data.length;i++){
+                    alasql(sql_insert_products,initial_data.products_data[i]);
+                }
+
+                for (var i = 0; i < initial_data.tokuisaki_data.length;i++){
+                    alasql(sql_insert_tokuisaki,initial_data.tokuisaki_data[i]);
+                }
+
+                for (var i = 0; i < initial_data.stock_data.length;i++){
+                    alasql(sql_insert_stock,initial_data.stock_data[i]);
                 }
                               
                 resolve();
+
             }catch(e){
                 reject(e)
             }
