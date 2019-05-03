@@ -23,11 +23,11 @@ var dao = {
                 "CREATE TABLE IF NOT EXISTS t_products (id INT, product_name STRING, price INT);"
         
                 const sql_create_order_info =
-                "CREATE TABLE IF NOT EXISTS t_order_info(order_num INT, order_date DATE, total_amount INT," +
-                " tanto_name STRING, tanto_department STRING, post STRING, address STRING, tel STRING);"
+                "CREATE TABLE IF NOT EXISTS t_order_info(order_num INT, order_date DATE, total_amount INT, corporate_code STRING ," +
+                "tanto_department STRING, tanto_name STRING, post STRING, address STRING, tel STRING, mail STRING);"
         
                 const sql_create_order_detail = 
-                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT);"
+                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT, delivery_date DATE);"
                 
                 const sql_create_tokuisaki = 
                 "CREATE TABLE IF NOT EXISTS t_tokuisaki(code STRING, corporate_name STRING, transaction_limit INT);";
