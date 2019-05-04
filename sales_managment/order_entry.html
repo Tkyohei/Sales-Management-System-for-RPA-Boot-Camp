@@ -45,58 +45,120 @@
             <div v-if="app_data.status.isInput">
                 <p class="title is-4 has-text-grey-light">{{ text.order_info_title }}</p>
                 <div class="box has-background-white container-card-info">
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_corporate_code }}</label>
-                        <div class="control">
-                            <input class="input input-width-m" type="text" v-model="app_data.order_info_dto.corporate_code">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-grey">{{ text.label_corporate_code }}</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input input-width-m" type="text" v-model="app_data.order_info_dto.corporate_code"　:placeholder="text.label_corporate_code">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-building"></i>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_tanto_department }}</label>
-                        <div class="control ">
-                            <input class="input input-width-l" type="text" v-model="app_data.order_info_dto.tanto_department">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-grey">{{ text.label_tanto_info }}</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_department" :placeholder="text.label_tanto_department">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-users"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_name"　:placeholder="text.label_tanto_name">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_tanto_name }}</label>
-                        <div class="control">
-                            <input class="input input-width-l" type="text" v-model="app_data.order_info_dto.tanto_name">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_first" v-on:change="merge_tel" :placeholder="text.label_tanto_tel">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-phone"></i>
+                                    </span>
+                                    <span class="hyphen"> - </span>
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_second" v-on:change="merge_tel">
+                                    <span class="hyphen"> - </span>
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_third" v-on:change="merge_tel">
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_tanto_tel }}</label>
-                        <div class="control">
-                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_first" v-on:change="merge_tel">
-                            <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_second" v-on:change="merge_tel">
-                            <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_third" v-on:change="merge_tel">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="email" v-model="app_data.order_info_dto.mail"　:placeholder="text.label_tanto_mail">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_tanto_mail }}</label>
-                        <div class="control">
-                            <input class="input" type="email" v-model="app_data.order_info_dto.mail">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-grey">{{ text.label_delivery_info }}</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_first" v-on:change="merge_post">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas">{{ text.label_post }}</i>
+                                    </span>
+                                    <span class="hyphen"> - </span>
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.post_second" v-on:change="merge_post">
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <div class="control">
-                            <label class="label has-text-grey">{{ text.label_post }}</label>
-                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_first" v-on:change="merge_post">
-                            <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_second" v-on:change="merge_post">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.address"　:placeholder="text.label_address">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_address }}</label>
-                        <div class="control">
-                            <input class="input" type="text" v-model="app_data.order_info_dto.address">
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-grey">{{ text.label_order_date }}</label>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label has-text-grey">{{ text.label_order_date }}</label>
-                        <div class="control">
-                            <input class="input input-width-m has-text-grey" type="date" v-model="app_data.order_info_dto.order_date">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input input-width-m has-text-grey" type="date" v-model="app_data.order_info_dto.order_date">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
