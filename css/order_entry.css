@@ -58,13 +58,13 @@
     color:grey;
 }
 
-#go-next{
+.flex-end{
     display: flex;
     justify-content: flex-end; 
 }
 
 .input-width-ss{
-    width:56px;
+    width:64px;
 }
 
 .input-width-s{
