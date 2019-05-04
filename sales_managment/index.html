@@ -12,12 +12,12 @@
         <link rel="stylesheet" href="../css/index.css">
     </head>
     <body class="has-background-light">
-        <div id="header-nav">
+        <div id="header-nav" v-cloak>
             <header-nav></header-nav>
         </div>
         <section class="section">
             <div class="box has-background-white container-menu">
-                <div id="menu-buttons" class="columns is-multiline container-menu-area is-variable is-7">
+                <div id="menu-buttons" class="columns is-multiline container-menu-area is-variable is-7" v-cloak>
                     <menu-button 
                         v-for="button in buttons"
                         v-bind:key="button.id"

@@ -15,7 +15,7 @@
         <div id="header-nav">
             <header-nav></header-nav>
         </div>
-        <div id="status-area" class="columns is-gapless status-area">
+        <div id="status-area" class="columns is-gapless status-area" v-cloak>
             <div class="status-area-icon">
                 <span class="icon is-large status-area-icon-item"
                  v-bind:class="InputIconClass">
@@ -41,62 +41,62 @@
                 </span>
             </div>
         </div>
-        <section id="main-content" class="section container-card">
+        <section id="main-content" class="section container-card" v-cloak>
             <div v-if="app_data.status.isInput">
                 <p class="title is-4 has-text-grey-light">{{ text.order_info_title }}</p>
                 <div class="box has-background-white container-card-info">
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_corporate_code }}</label>
                         <div class="control">
-                            <input class="input input-width-m" type="text">
+                            <input class="input input-width-m" type="text" v-model="app_data.order_info_dto.corporate_code">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_tanto_department }}</label>
                         <div class="control ">
-                            <input class="input input-width-l" type="text">
+                            <input class="input input-width-l" type="text" v-model="app_data.order_info_dto.tanto_department">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_tanto_name }}</label>
                         <div class="control">
-                            <input class="input input-width-l" type="text">
+                            <input class="input input-width-l" type="text" v-model="app_data.order_info_dto.tanto_name">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_tanto_tel }}</label>
                         <div class="control">
-                            <input class="input input-width-s" type="tel">
+                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_first" v-on:change="merge_tel">
                             <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="tel">
+                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_second" v-on:change="merge_tel">
                             <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="tel">
+                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_third" v-on:change="merge_tel">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_tanto_mail }}</label>
                         <div class="control">
-                            <input class="input" type="email">
+                            <input class="input" type="email" v-model="app_data.order_info_dto.mail">
                         </div>
                     </div>
                     <div class="field">
                         <div class="control">
                             <label class="label has-text-grey">{{ text.label_post }}</label>
-                            <input class="input input-width-s" type="number">
+                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_first" v-on:change="merge_post">
                             <span class="hyphen"> - </span>
-                            <input class="input input-width-s" type="number">
+                            <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_second" v-on:change="merge_post">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_address }}</label>
                         <div class="control">
-                            <input class="input" type="text">
+                            <input class="input" type="text" v-model="app_data.order_info_dto.address">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-grey">{{ text.label_order_date }}</label>
                         <div class="control">
-                            <input class="input input-width-m has-text-grey" type="date">
+                            <input class="input input-width-m has-text-grey" type="date" v-model="app_data.order_info_dto.order_date">
                         </div>
                     </div>
                 </div>
@@ -114,11 +114,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="dto in app_data.order_detail_dtos">
+                            <tr v-for="dto in app_data.order_detail_dtos"
+                                v-bind:key="dto.num"
+                            >
                                 <th class="has-text-grey">{{ dto.num }}</th>
                                 <td>
                                     <div class="select input-width-full">
-                                        <select class="input-width-full">
+                                        <select class="input-width-full" v-model="dto.selected_item" v-on:change="calculate_payment(dto)">
                                             <option value='' selected>{{ text.choose_item }}</option>
                                             <option v-for="item in app_data.items">{{ item.product_name }}</option>
                                         </select>
@@ -126,17 +128,17 @@
                                 </td>
                                 <td>
                                     <div class="control input-width-s">
-                                        <input class="input" type="number" disabled>
+                                        <input class="input" type="number" v-model="dto.price" disabled>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control input-width-ss">
-                                        <input class="input" type="text">
+                                        <input class="input" type="number" v-model="dto.quantity" v-on:change="calculate_payment(dto)">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control">
-                                        <input class="input" type="text">
+                                        <input class="input" type="text" v-model="dto.amount" disabled>
                                     </div>
                                 </td>
     
@@ -144,6 +146,8 @@
 
                         </tbody>
                     </table>
+                    <p class="title is-5 has-text-grey flex-end">{{ text.total_amount }}</p>
+                    <p class="title is-6 has-text-grey flex-end">{{ text.tax }}</p>
                 </div>
             </div>
             <div  v-if="app_data.status.isConfirm" class="box has-background-white">
@@ -153,7 +157,7 @@
                 <span class="h">受注入力を完了しました。</span>
             </div>
         </section>
-        <div id="go-next" class="container" >
+        <div id="go-next" class="container flex-end" v-cloak>
             <a class="button is-primary"　v-on:click="go_next">{{text}}</a>
         </div>
         <script src="../js/component.js"></script>

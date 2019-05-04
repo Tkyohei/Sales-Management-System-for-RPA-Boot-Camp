@@ -7,3 +7,7 @@ body{
     border-bottom-width : 1px;
     border-bottom-color : lightgray;
 }
+
+[v-cloak]{
+    display:none;
+}

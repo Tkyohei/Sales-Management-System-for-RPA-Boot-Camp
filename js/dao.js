@@ -27,7 +27,7 @@ var dao = {
                 "tanto_department STRING, tanto_name STRING, post STRING, address STRING, tel STRING, mail STRING);"
         
                 const sql_create_order_detail = 
-                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT, delivery_date DATE);"
+                "CREATE TABLE IF NOT EXISTS t_order_detail(detail_id INT, order_num INT, product_id INT, quantity INT);"
                 
                 const sql_create_tokuisaki = 
                 "CREATE TABLE IF NOT EXISTS t_tokuisaki(code STRING, corporate_name STRING, transaction_limit INT);";
