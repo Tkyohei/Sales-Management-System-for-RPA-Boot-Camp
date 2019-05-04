@@ -4,7 +4,7 @@
 }
 
 .container-card-info{
-    padding: 4% 8% 4% 8%;
+    padding: 4% 6% 4% 2%;
 }
 
 .container-card-detail{
@@ -64,11 +64,11 @@
 }
 
 .input-width-ss{
-    width:64px;
+    width:72px;
 }
 
 .input-width-s{
-    width : 80px;
+    width : 96px;
 }
 
 .input-width-m{
@@ -80,7 +80,7 @@
 }
 
 .input-width-item{
-    width : 48%;
+    width : 44%;
 }
 
 .input-width-full{
@@ -89,4 +89,8 @@
 
 .hyphen{
     vertical-align: -webkit-baseline-middle;
+}
+
+.icon-is-nothing{
+    padding-left : calc(0.625em - 1px) !important;
 }
