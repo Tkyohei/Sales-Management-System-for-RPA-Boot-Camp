@@ -14,7 +14,13 @@ var text_def = {
         label_post : "納品先郵便番号",
         label_address : "納品先住所",
         label_order_date : "注文日",
-        order_item_title : "注文内容を入力してください"
+        order_item_title : "注文内容を入力してください",
+        order_item_num : "No",
+        order_item_item : "商品名",
+        order_item_price : "単価",
+        order_item_quantity : "数量",
+        order_item_amount : "合計",
+        choose_item : "商品を選択してください"
     }
 
 } 
@@ -34,13 +40,22 @@ var app_data = {
         tel : "",
         mail : "",
     },
-    order_detail_dto:[
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}]
-    ]
+    order_detail_dtos:[
+        {num : 1,  selected_item: "", price :0,quantity:0,amount:0},
+        {num : 2,  selected_item: "", price :0,quantity:0,amount:0},
+        {num : 3,  selected_item: "", price :0,quantity:0,amount:0},
+        {num : 4,  selected_item: "", price :0,quantity:0,amount:0},
+        {num : 5,  selected_item: "", price :0,quantity:0,amount:0}        
+    ],
+    items: (()=>{
+        // To Do : 非同期にしたい
+        try{
+            return dao.selectAllItems();
+        }catch(e){
+            alert("商品リストの取得に失敗しました");
+            console.log(e);
+        }
+    })()
 }
 
 var app_header_nav = new Vue({

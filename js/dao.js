@@ -83,5 +83,13 @@ var dao = {
                 reject(e)
             }
         })
+    },
+    selectAllItems : () =>{
+        try{
+            const sql_select = "SELECT * from t_products";
+            return alasql(sql_select);
+        }catch(e){
+            throw new Error(e)
+        }
     }
 }

@@ -106,27 +106,27 @@
                     <table class="table is-striped is-hoverable">
                         <thead>
                             <tr>
-                                <th class="has-text-grey">No</th>
-                                <th class="has-text-grey input-width-item">商品名</th>
-                                <th class="has-text-grey">単価</th>
-                                <th class="has-text-grey">数量</th>
-                                <th class="has-text-grey">合計</th>
+                                <th class="has-text-grey">{{ text.order_item_num }}</th>
+                                <th class="has-text-grey input-width-item">{{ text.order_item_item }}</th>
+                                <th class="has-text-grey">{{ text.order_item_price }}</th>
+                                <th class="has-text-grey">{{ text.order_item_quantity }}</th>
+                                <th class="has-text-grey">{{ text.order_item_amount }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="has-text-grey">1</th>
+                            <tr v-for="dto in app_data.order_detail_dtos">
+                                <th class="has-text-grey">{{ dto.num }}</th>
                                 <td>
                                     <div class="select input-width-full">
                                         <select class="input-width-full">
-                                            <option value='' seslected>商品を選択してください</option>
-                                            <option>キック力増強シューズ</option>
+                                            <option value='' selected>{{ text.choose_item }}</option>
+                                            <option v-for="item in app_data.items">{{ item.product_name }}</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control input-width-s">
-                                        <input class="input" type="text" disabled>
+                                        <input class="input" type="number" disabled>
                                     </div>
                                 </td>
                                 <td>
