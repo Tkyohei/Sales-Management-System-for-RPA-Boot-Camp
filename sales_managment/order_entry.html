@@ -113,35 +113,15 @@
                                 <th class="has-text-grey">合計</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th class="has-text-grey">1</th>
-                                <td>
-                                    <div class="select input-width-full">
-                                        <select class="input-width-full">
-                                            <option value='' seslected>商品を選択してください</option>
-                                            <option>キック力増強シューズ</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control input-width-s">
-                                        <input class="input" type="text" disabled>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control input-width-ss">
-                                        <input class="input" type="text">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text">
-                                    </div>
-                                </td>
-    
-                            </tr>
-
+                        <tbody id="item-input-rows">
+                            <input-item-tr
+                                v-for="row in item_input_rows"
+                                v-bind:items="items"
+                                v-bind:selected_item="row.selected_item"
+                                v-bind:price="row.price"
+                                v-bind:quantity="row.amount"
+                            >
+                            </input-item-tr>
                         </tbody>
                     </table>
                 </div>

@@ -34,13 +34,11 @@ var app_data = {
         tel : "",
         mail : "",
     },
-    order_detail_dto:[
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}],
-        [{product_id : "", quantity : "", delivery_data : ""}]
-    ]
+    order_detail_dtos:[
+        {num : 1,  selected_item: "", price :0,quantity:0,amount:0},
+        {num : 1,  selected_item: "", price :0,quantity:0,amount:0}        
+    ],
+    items:["キック力増強シューズ","時計型麻酔銃","APTX4869"]
 }
 
 var app_header_nav = new Vue({
@@ -89,7 +87,9 @@ var app_input_page = new Vue({
     el:'#main-content',
     data: { 
         app_data : app_data,
-        text : text_def.form
+        text : text_def.form,
+        items : app_data.items,
+        item_input_rows : app_data.order_detail_dtos
     }
 });
 
@@ -113,5 +113,13 @@ var app_go_next = new Vue({
                 window.location.href = "./index.html";
             }
         }
+    }
+})
+
+var app_input_item_rows = new Vue({
+    el : "#item-input-rows",
+    data :{
+        items : app_data.items,
+        item_input_rows : app_data.order_detail_dtos
     }
 })

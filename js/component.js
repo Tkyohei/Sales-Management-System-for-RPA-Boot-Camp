@@ -48,9 +48,7 @@ Vue.component('header-nav',{
 Vue.component("menu-button",{
     props:["text","icon","link"],
     data : function(){
-        return{
-            
-        }
+        return{}
     },
     methods :{
         transition : function(){
@@ -65,5 +63,37 @@ Vue.component("menu-button",{
                         '<span>{{ text }}</span>' +
                     '</a>' +
                 '</div>'
+})
+
+Vue.component("input-item-tr",{
+    props:["num","items","selected_item","price","quantity","amount"],
+    data : function(){
+        return{}
+    },
+    template : '<tr>' +
+                    '<th class="has-text-grey">{{ num }}</th>' +
+                    '<td>' +
+                        '<div class="select input-width-full"'> +
+                            '<select class="input-width-full" v-model="selected_item">' +
+                                '<option value="" selected>商品を選択してください</option>' +
+                                '<option v-for="item in items">{{ item }}</option>' +
+                            '</select>' +
+                        '</div>' +
+                    '</td>' +
+                    '<td>' +
+                        '<div class="control input-width-s>' +
+                            '<input class="input" type="number" v-model="price">' +
+                        '</div>' +
+                    '</td>' +
+                    '<td>' +
+                        '<div class="control input-width-ss">' +
+                            '<input class="input" type="number" v-model="quantity">' +
+                        '</div>' +
+                    '</td>' +
+                        '<td>' +'<div class="control">' +
+                            '<input class="input" type="number" v-model="amount">' +
+                        '</div>' +
+                    '</td>'  +
+                '</tr>'
 })
 
