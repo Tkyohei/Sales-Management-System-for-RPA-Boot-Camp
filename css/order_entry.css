@@ -11,6 +11,12 @@
     padding: 4% 6% 4% 6%;
 }
 
+.container-card-title{
+    margin-left:2%;
+    margin-top:2%;
+}
+
+
 .status-area{
     display: flex;
     justify-content: center;
@@ -93,4 +99,8 @@
 
 .icon-is-nothing{
     padding-left : calc(0.625em - 1px) !important;
+}
+
+.inputed-data{
+    padding-top: 0.375em;
 }
