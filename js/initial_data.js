@@ -11,7 +11,7 @@ const initial_data = {
         [{id:9,product_name:"脚付きホワイトボード",price:5700}]
     ],
     tokuisaki_data : [
-        [{code:"R151820",corporate_name:"令和クリエイティブソリューションズ株式会社", transaction_limit:310000}],
+        [{code:"R151820",corporate_name:"令和クリエイティブソリューションズ株式会社", transaction_limit:5000000}],
         [{code:"H801010",corporate_name:"株式会社ホタテ", transaction_limit:280000}],
         [{code:"P888888",corporate_name:"株式会社パラソル", transaction_limit:120000}],
         [{code:"H123456",corporate_name:"株式会社UBW", transaction_limit:310000}],
