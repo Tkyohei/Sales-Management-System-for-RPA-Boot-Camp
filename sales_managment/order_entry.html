@@ -51,12 +51,13 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input input-width-m" type="text" v-model="app_data.order_info_dto.corporate_code"　:placeholder="text.label_corporate_code">
+                                <div class="control has-icons-left">
+                                    <input class="input input-width-m" type="text" v-model="app_data.order_info_dto.corporate_code" :class="CorporateCodeClass" :placeholder="text.label_corporate_code">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-building"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.corporate_code.hasError">{{ app_data.error.corporate_code.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -66,20 +67,22 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_department" :placeholder="text.label_tanto_department">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_department" :class="TantoDepartmentClass" :placeholder="text.label_tanto_department">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-users"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.tanto_department.hasError">{{ app_data.error.tanto_department.errorMsg }}</p>
                             </div>
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_name"　:placeholder="text.label_tanto_name">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.tanto_name" :class="TantoNameClass"　:placeholder="text.label_tanto_name">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.tanto_name.hasError">{{ app_data.error.tanto_name.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -88,16 +91,17 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_first" v-on:change="merge_tel" :placeholder="text.label_tanto_tel">
+                                <div class="control has-icons-left">
+                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.tel_first" v-on:change="merge_tel" :class="TelClass" :placeholder="text.label_tanto_tel">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-phone"></i>
                                     </span>
                                     <span class="hyphen"> - </span>
-                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_second" v-on:change="merge_tel">
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_second" v-on:change="merge_tel" :class="TelClass">
                                     <span class="hyphen"> - </span>
-                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_third" v-on:change="merge_tel">
-                                </p>
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.tel_third" v-on:change="merge_tel" :class="TelClass">
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.tel.hasError">{{ app_data.error.tel.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -106,12 +110,13 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input" type="email" v-model="app_data.order_info_dto.mail"　:placeholder="text.label_tanto_mail">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" v-model="app_data.order_info_dto.mail" :class="MailClass"　:placeholder="text.label_tanto_mail">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-envelope"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.mail.hasError">{{ app_data.error.mail.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -121,14 +126,15 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_first" v-on:change="merge_post">
+                                <div class="control has-icons-left">
+                                    <input class="input input-width-s" type="tel" v-model="app_data.eda_num.post_first" :class="PostClass" v-on:change="merge_post">
                                     <span class="icon is-small is-left">
-                                        <i class="fas">{{ text.label_post }}</i>
+                                        <i class="fas">〒</i>
                                     </span>
                                     <span class="hyphen"> - </span>
-                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.post_second" v-on:change="merge_post">
-                                </p>
+                                    <input class="input input-width-s icon-is-nothing" type="tel" v-model="app_data.eda_num.post_second" :class="PostClass" v-on:change="merge_post">
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.post.hasError">{{ app_data.error.post.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -137,12 +143,13 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input" type="text" v-model="app_data.order_info_dto.address"　:placeholder="text.label_address">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" v-model="app_data.order_info_dto.address" :class="AddressClass"　:placeholder="text.label_address">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-map-marked-alt"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.address.hasError">{{ app_data.error.address.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -152,12 +159,13 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <p class="control has-icons-left">
-                                    <input class="input input-width-m has-text-grey" type="date" v-model="app_data.order_info_dto.order_date">
+                                <div class="control has-icons-left">
+                                    <input class="input input-width-m has-text-grey" type="date" v-model="app_data.order_info_dto.order_date" :class="OrderDateClass">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-calendar-alt"></i>
                                     </span>
-                                </p>
+                                </div>
+                                <p class="help is-danger" v-if="app_data.error.order_date.hasError">{{ app_data.error.order_date.errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -165,6 +173,11 @@
                 <br>
                 <p class="title is-4 has-text-grey-light">{{ text.order_item_title }}</p>
                 <div class="box has-background-white container-card-detail">
+                    <div class="notification content is-danger is-small" v-if="app_data.error.detail.hasError">
+                        <li v-for="msg in app_data.error.detail.errorMsgs">
+                            {{ msg }}
+                        </li>
+                    </div>
                     <table class="table is-striped is-hoverable">
                         <thead>
                             <tr>
@@ -203,9 +216,7 @@
                                         <input class="input" type="text" v-model="dto.amount" disabled>
                                     </div>
                                 </td>
-    
                             </tr>
-
                         </tbody>
                     </table>
                     <p class="title is-5 has-text-grey flex-end">{{ text.total_amount }}</p>
@@ -216,11 +227,27 @@
                 <span>確認画面</span>
             </div>
             <div v-if="app_data.status.isSuccess" class="box has-background-white">
-                <span class="h">受注入力を完了しました。</span>
+                <span class="">受注入力を完了しました。</span>
             </div>
         </section>
         <div id="go-next" class="container flex-end" v-cloak>
-            <a class="button is-primary"　v-on:click="go_next">{{text}}</a>
+            <a class="button is-primary" :class="GoNextBtnClass" :disabled="loading"　v-on:click="go_next">{{text}}</a>
+            <div class="modal" :class="ModalClass">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="message is-danger">
+                        <div class="message-header">
+                            入力エラー
+                        </div>
+                        <div class="message-body">
+                            <li v-for="msg in allErrorMsgs">
+                                {{ msg }}
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close"  v-on:click="close_modal"></button>
+            </div>
         </div>
         <script src="../js/component.js"></script>
         <script src="../js/order_entry.js"></script>

@@ -11,13 +11,13 @@ const initial_data = {
         [{id:9,product_name:"脚付きホワイトボード",price:5700}]
     ],
     tokuisaki_data : [
-        [{code:"令和クリエイティブソリューションズ株式会社", corporate_code:"R151820",transaction_limit:310000}],
-        [{code:"株式会社ホタテ", corporate_code:"H801010",transaction_limit:280000}],
-        [{code:"株式会社パラソル", corporate_code:"P888888",transaction_limit:120000}],
-        [{code:"株式会社UBW", corporate_code:"H123456",transaction_limit:310000}],
-        [{code:"SAZAE株式会社", corporate_code:"S333333",transaction_limit:70000}],
-        [{code:"KATSUOホタテ", corporate_code:"S202020",transaction_limit:50000}],
-        [{code:"WAKAME株式会社", corporate_code:"H000000",transaction_limit:30000}]                    
+        [{code:"R151820",corporate_name:"令和クリエイティブソリューションズ株式会社", transaction_limit:310000}],
+        [{code:"H801010",corporate_name:"株式会社ホタテ", transaction_limit:280000}],
+        [{code:"P888888",corporate_name:"株式会社パラソル", transaction_limit:120000}],
+        [{code:"H123456",corporate_name:"株式会社UBW", transaction_limit:310000}],
+        [{code:"S333333",corporate_name:"SAZAE株式会社", transaction_limit:70000}],
+        [{code:"S202020",corporate_name:"KATSUOホタテ", transaction_limit:50000}],
+        [{code:"H000000",corporate_name:"WAKAME株式会社", transaction_limit:30000}]                    
     ],
     stock_data : [
         [{id:1, stock:200}],

@@ -41,7 +41,7 @@ var dao = {
                 create_count = create_count + alasql(sql_create_order_detail);        
                 create_count = create_count + alasql(sql_create_tokuisaki);
                 create_count = create_count + alasql(sql_create_stock);
-                resolve();
+                resolve(create_count);
             }catch(e){
                 reject(e)
             }
@@ -86,10 +86,41 @@ var dao = {
     },
     selectAllItems : () =>{
         try{
-            const sql_select = "SELECT * from t_products";
+            const sql_select = "SELECT * FROM t_products";
             return alasql(sql_select);
         }catch(e){
             throw new Error(e)
         }
+    },
+    selectTokuisakiByCorporateCode : (corporate_code)=>{
+        return new Promise((resolve,reject)=>{
+            try{
+                const sql_select = "SELECT * FROM t_tokuisaki WHERE code = ?"
+                var tokuisaki = alasql(sql_select,corporate_code)
+                resolve(tokuisaki);
+            }catch(e){
+                reject(e);
+            }
+        })
+    },
+    selectProductOutOfStock : (products_info)=>{
+        return new Promise((resolve,reject)=>{
+            try{    
+                var outOfStock = [];
+                const sql_select = "SELECT stock FROM t_stock WHERE id = ?"
+
+                for(var i = 0; i < products_info.length; i++){
+                    var stockInfo = alasql(sql_select, products_info[i].item_id);
+                    if(stockInfo[0].stock < products_info[i].quantity){
+                        outOfStock.push(products_info[i]);
+                    }
+                }
+
+                resolve(outOfStock);
+
+            }catch(e){
+                reject(e);
+            }
+        })
     }
 }
