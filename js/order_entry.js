@@ -24,7 +24,10 @@ var text_def = {
         order_item_amount : "小計",
         choose_item : "商品を選択してください",
         total_amount : "合計 : 0 円",
-        tax : "（内消費税 : 0 円）"
+        tax : "（内消費税 : 0 円）",
+        confirm_title : "以下の内容でよろしければ、保存ボタンを押してください。",
+        label_order_detail : "注文内容",
+        label_total_amount : "合計",
     },
     error_messeages : {
         isNull : "が入力されていません。",
@@ -251,7 +254,7 @@ var app_input_page = new Vue({
                                 " 円"
             this.text.tax = "（内消費税 : " + 
                                 Math.floor(total_amount * 0.08).toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,') +
-                                " 円"
+                                " 円）"
         }
     }
 });
@@ -326,6 +329,12 @@ var app_go_next = new Vue({
                     if(this.allErrorMsgs.length > 0){
                         this.modalShow = true;
                     }else{
+                        
+                        // 注文内容の空白行を削除
+                        app_data.order_detail_dtos = app_data.order_detail_dtos.filter(function(item, index){
+                            if (item.selected_item != "") return true;
+                        });
+                        
                         this.status.isInput = false;
                         this.status.isConfirm = true;
                         this.text = text_def.go_next_button.confirm
@@ -343,9 +352,9 @@ var app_go_next = new Vue({
                 }
 
                 this.loading = false;
+                scrollTo(0, 0);
 
             }),connectTime);
- 
         },
         close_modal : function(){
             this.modalShow = false;
