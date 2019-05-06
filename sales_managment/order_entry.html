@@ -9,6 +9,7 @@
     <script src="../lib/vue.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../lib/bulma.css">
+    <link rel="stylesheet" href="../lib/bulma.css">
     <link rel="stylesheet" href="../css/all_pages.css">
     <link rel="stylesheet" href="../css/order_entry.css">
 </head>
@@ -312,13 +313,13 @@
                                     {{dto.selected_item}}
                                 </td>
                                 <td>
-                                    {{dto.price}}
+                                    {{dto.price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}}
                                 </td>
                                 <td>
                                     {{dto.quantity}}
                                 </td>
                                 <td>
-                                    {{dto.amount}} 円
+                                    {{dto.amount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}} 円
                                 </td>
                             </tr>
 
@@ -328,17 +329,17 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">{{text.label_total_amount}}</label>
+                    <label class="label">{{text.label_total_amount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}}</label>
                 </div>
                 <div class="field-body">
                     <div class="inputed-data">
-                        <span>{{app_data.order_info_dto.total_amount}}円 {{text.tax}}</span>
+                        <span>{{app_data.order_info_dto.total_amount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}}円 {{text.tax}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div v-if="app_data.status.isSuccess" class="box has-background-white">
-            <span class="">受注入力を完了しました。</span>
+            <span class="">{{text.success_message}}{{app_data.order_num}}</span>
         </div>
     </section>
     <div id="go-next" class="container flex-end" v-cloak>
@@ -348,7 +349,7 @@
             <div class="modal-content">
                 <div class="message is-danger">
                     <div class="message-header">
-                        入力エラー
+                        エラー
                     </div>
                     <div class="message-body">
                         <li v-for="msg in allErrorMsgs">
@@ -360,6 +361,7 @@
             <button class="modal-close is-large" aria-label="close" v-on:click="close_modal"></button>
         </div>
     </div>
+    <footer class="footer has-background-light"></footer>
     <script src="../js/component.js"></script>
     <script src="../js/order_entry.js"></script>
 </body>

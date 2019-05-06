@@ -45,6 +45,7 @@ Vue.component('header-nav',{
             '</nav>'
 })
 
+
 Vue.component("menu-button",{
     props:["text","icon","link"],
     data : function(){
