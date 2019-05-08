@@ -16,7 +16,7 @@ const initial_data = {
         [{code:"P888888",corporate_name:"株式会社パラソル", transaction_limit:120000}],
         [{code:"H123456",corporate_name:"株式会社UBW", transaction_limit:310000}],
         [{code:"S333333",corporate_name:"SAZAE株式会社", transaction_limit:70000}],
-        [{code:"S202020",corporate_name:"KATSUOホタテ", transaction_limit:50000}],
+        [{code:"S202020",corporate_name:"KATSUO株式会社", transaction_limit:50000}],
         [{code:"H000000",corporate_name:"WAKAME株式会社", transaction_limit:30000}]                    
     ],
     stock_data : [
