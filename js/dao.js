@@ -151,6 +151,36 @@ var dao = {
                 reject(e);
             }
         })
+    },
+    selectAllOrders : function(){
+        try {
+            const sql_select = "SELECT order_num, order_date, corporate_code, t_tokuisaki.corporate_name, total_amount, " +
+                            "tanto_department, tanto_name, post, address, tel, mail " +
+                            "FROM t_order_info " +
+                            "LEFT OUTER JOIN t_tokuisaki " +
+                            "ON t_order_info.corporate_code = t_tokuisaki.code;"
+            var orders = alasql(sql_select);
+            return orders;
+        } catch (e) {
+            throw new Error(e);
+        }
+    },
+    selectOrderDetail : function(order_num){
+        try {
+            // const sql_select = "SELECT num, order_num, t_products.product_name, t_products.price, quantity " +
+            //                     "FROM t_order_detail " +
+            //                     "LEFT OUTER JOIN t_products " +
+            //                     "ON t_order_detail.item_id = t_products.id s"
+            //                     "WHERE order_num = ?; "
+            //var detail = alasql(sql_select, order_num);
+
+            // ↑と↓の違いがわからん。なぜ↑はダメで↓はいいのか。
+
+            var detail = alasql("SELECT num, order_num, t_products.product_name, t_products.price, quantity FROM t_order_detail LEFT OUTER JOIN t_products ON t_order_detail.item_id = t_products.id WHERE order_num = ?;", order_num)
+            return detail;
+        } catch (e) {
+            throw new Error(e);
+        }
     }
 
 }

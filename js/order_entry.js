@@ -1,48 +1,3 @@
-var text_def = {
-    go_next_button: {
-        input: "確認画面へ",
-        confirm: "保存",
-        back: "メニューへ"
-    },
-    form: {
-        order_info_title: "① 注文情報を入力してください",
-        label_corporate_code: "企業コード",
-        label_tanto_info: "担当情報",
-        label_tanto_department: "担当部署",
-        label_tanto_name: "担当者名",
-        label_tanto_tel: "TEL",
-        label_tanto_mail: "Email",
-        label_delivery_info: "納品先情報",
-        label_post: "郵便番号",
-        label_address: "納品先住所",
-        label_order_date: "注文日",
-        order_item_title: "② 注文内容を入力してください",
-        order_item_num: "No",
-        order_item_item: "商品名",
-        order_item_price: "単価",
-        order_item_quantity: "数量",
-        order_item_amount: "小計",
-        choose_item: "商品を選択してください",
-        total_amount: "合計 : 0 円",
-        tax: "（内消費税 : 0 円）",
-        confirm_title: "以下の内容でよろしければ、保存ボタンを押してください。",
-        label_order_detail: "注文内容",
-        label_total_amount: "合計",
-        success_message : "新規受注の保存に成功しました。受注確定処理を行ってください。 受注番号 : "
-    },
-    error_messeages: {
-        isNull: "が入力されていません。",
-        isInvalidFormat: "が正しい形式で入力されていません。",
-        isZero: "が0です。",
-        detailIsNotFromTopToBottom: "注文内容は上から詰めて入力してください。",
-        isDuplicated: "が重複して入力されています。",
-        invalidCorporateCode: "企業コードがマスタに存在しません。",
-        overTransactionLimit: "の取引限度額を超えています。",
-        isOutOfStock: "の在庫が不足しています。",
-        failedToInsert : "データベースで障害が発生しました。データベースの初期化を推奨します。"
-    }
-}
-
 var app_data = {
     status: {
         isInput: true,
@@ -443,7 +398,12 @@ var check_inputed_data = {
             this.isNullError(texts.label_post, error.post);
         }
         if (infoDto.address == "") this.isNullError(texts.label_address, error.address);
-        if (infoDto.order_date == null) this.isNullError(texts.label_order_date, error.order_date);
+        if (infoDto.order_date == null){
+            this.isNullError(texts.label_order_date, error.order_date);
+        } 
+        else if(infoDto.order_date.length != 10){
+            this.isNullError(texts.label_order_date, error.order_date);
+        }
 
         var Syohin_Ga_Hitotsumo_Nyuryoku_Saretenai = true;
         for (var i = 0; i < detailDtos.length; i++) {
@@ -527,8 +487,8 @@ var check_inputed_data = {
         }
     },
     checkFromTopToBottom: function () {
-        var TopRowHasNoItem = 0;
-        var BottomRowHasItem = 0;
+        var TopRowHasNoItem = 0; // 商品が選択されたいない行のうち、一番上の行の行番号を保持
+        var BottomRowHasItem = 0; // 商品が選択されている行のうち、一番下の行の行番号を保持
         var details = app_data.order_detail_dtos
         for (var i = 0; i < details.length; i++) {
             var selectedItemOfThisRow = details[i].selected_item;
@@ -543,7 +503,7 @@ var check_inputed_data = {
 
         }
 
-        if (TopRowHasNoItem < BottomRowHasItem) {
+        if (TopRowHasNoItem < BottomRowHasItem && TopRowHasNoItem != 0) {
             app_data.error.detail.hasError = true;
             app_data.error.detail.errorMsgs.push(text_def.error_messeages.detailIsNotFromTopToBottom)
 
