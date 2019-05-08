@@ -1,0 +1,165 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" charset="utf-8">
+    <script src="../lib/alasql.min.js"></script>
+    <script src="../js/dao.js"></script>
+    <script src="../js/redirect.js"></script>
+    <script src="../js/initial_data.js"></script>
+    <script src="../js/text_def.js"></script>
+    <script src="../lib/vue.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/bulma.css">
+    <link rel="stylesheet" href="../css/all_pages.css">
+    <link rel="stylesheet" href="../css/order_list.css">
+</head>
+
+<body class="has-background-light">
+    <div id="header-nav" v-cloak>
+        <header-nav></header-nav>
+    </div>
+    <section id="order-list" class="section container-card">
+        <div class="box has-background-white">
+            <table class="table is-striped is-hoverable container-card-table">
+                <thead>
+                    <tr>
+                        <th class="has-text-grey">{{text.form.label_order_num}}</th>
+                        <th class="has-text-grey input-width-item">{{text.form.label_order_date}}</th>
+                        <th class="has-text-grey">{{text.form.label_corporate_code}}</th>
+                        <th class="has-text-grey">{{text.form.label_corporate_name}}</th>
+                        <th class="has-text-grey">{{text.form.label_total_amount}}</th>
+                        <th class="has-text-grey">{{text.form.btn_detail}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="order in orders.orders">
+                        <td class="has-text-grey container-card-order-num">{{order.order_num}}</td>
+                        <td>{{order.order_date}}</td>
+                        <td>{{order.corporate_code}}</td>
+                        <td>{{order.corporate_name}}</td>
+                        <td>{{order.total_amount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}}</td>
+                        <td><a class="button is-primary" v-on:click="showDetail(order)">{{text.form.btn_detail}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <div id="modal-detail">
+        <div v-if="detail.detailClicked" class="modal" :class="ModalClass">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="message is-info">
+                    <div class="message-header">
+                        {{text.form.label_detail}}
+                    </div>
+                    <div class="message-body">
+                        <div class="field container-card-title">
+                            <p class="">
+                                <strong>{{text.form.confirm_title}}</strong>
+                            </p>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">{{text.form.label_corporate_code}}</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="inputed-data">
+                                    <span>{{detail.orderInfo.corporate_code}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal"><label class="label">{{text.form.label_tanto_info}}</label>
+
+                            </div>
+                            <div class="field-body">
+                                <div class="inputed-data">
+                                    <ol>{{text.form.label_tanto_department}} : {{detail.orderInfo.tanto_department}}
+                                    </ol>
+                                    <ol>{{text.form.label_tanto_name}} : {{detail.orderInfo.tanto_name}}</ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal"><label class="label">{{text.form.label_delivery_info}}</label>
+
+                            </div>
+                            <div class="field-body">
+                                <div class="inputed-data">
+                                    <ol>{{text.form.label_post}} : {{detail.orderInfo.post}}</ol>
+                                    <ol>{{text.form.label_address}} : {{detail.orderInfo.address}}</ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">{{text.form.label_order_date}}</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="inputed-data">
+                                    <span>{{detail.orderInfo.order_date}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">{{text.form.label_order_detail}}</label>
+                            </div>
+                            <div class="field-body">
+                                <table class="table is-bordered is-hoverable is-full-width">
+                                    <thead>
+                                        <tr>
+                                            <th class="has-text-grey">{{ text.form.order_item_num }}</th>
+                                            <th class="has-text-grey">{{ text.form.order_item_item }}</th>
+                                            <th class="has-text-grey">{{ text.form.order_item_price }}</th>
+                                            <th class="has-text-grey">{{ text.form.order_item_quantity }}</th>
+                                            <th class="has-text-grey">{{ text.form.order_item_amount }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in detail.items" v-bind:key="item.num">
+                                            <th class="has-text-grey">{{item.num}}</th>
+                                            <td>
+                                                {{item.product_name}}
+                                            </td>
+                                            <td>
+                                                {{item.price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}}
+                                            </td>
+                                            <td>
+                                                {{item.quantity}}
+                                            </td>
+                                            <td>
+                                                {{(item.quantity * item.price).toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,') }}
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">{{text.form.label_total_amount}}</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="inputed-data">
+                                    <span>{{detail.orderInfo.total_amount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')}} 円
+                                        {{text.form.tax.replace('0', detail.tax.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,'))}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close" v-on:click="closeModal"></button>
+        </div>
+    </div>
+    </div>
+    <footer class="footer has-background-light"></footer>
+    <script src="../js/component.js"></script>
+    <script src="../js/order_list.js"></script>
+</body>
+
+</html>
